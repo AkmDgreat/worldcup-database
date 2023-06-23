@@ -1,14 +1,5 @@
 #! /bin/bash
 
-if [[ $1 == "test" ]]
-then
-  PSQL="psql --username=postgres --dbname=worldcuptest -t --no-align -c"
-else
-  PSQL="psql --username=freecodecamp --dbname=worldcup -t --no-align -c"
-fi
-
-# Do not change code above this line. Use the PSQL variable above to query your database.
-
 TRUNCATE_TABLE_RESULT=$($PSQL "TRUNCATE teams, games")
 echo "TRUNCATED teams and games"
 
@@ -30,7 +21,6 @@ do
             INSERT_OPPONENT_RESULT=$($PSQL "INSERT INTO teams(name) VALUES('$OPPONENT')")
             OPPONENT_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$OPPONENT'")
             echo "INSERTED $OPPONENT_ID, $OPPONENT INTO teams"
-
         fi
 
         WINNER_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$WINNER'")
