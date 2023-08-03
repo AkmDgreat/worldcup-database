@@ -1,5 +1,7 @@
 #! /bin/bash
 
+PSQL="psql --username=freecodecamp --dbname=worldcup --no-align --tuples-only -c"
+
 TRUNCATE_TABLE_RESULT=$($PSQL "TRUNCATE teams, games")
 echo "TRUNCATED teams and games"
 
